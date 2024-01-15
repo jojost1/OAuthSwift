@@ -6,7 +6,7 @@
 //  Copyright © 2015 Dongri Jin. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(visionOS) || os(tvOS)
     import UIKit
 
     extension UIApplication {

@@ -8,7 +8,7 @@
 
 import OAuthSwift
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
     import UIKit
     @UIApplicationMain
     class AppDelegate: UIResponder {
@@ -34,7 +34,7 @@ extension AppDelegate {
 }
 
 // MARK: ApplicationDelegate
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 extension AppDelegate: UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {

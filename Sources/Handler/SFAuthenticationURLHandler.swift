@@ -7,7 +7,7 @@
 //
 
 import Foundation
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 import SafariServices
 #if canImport(AuthenticationServices)
 import AuthenticationServices

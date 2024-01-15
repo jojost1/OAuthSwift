@@ -8,7 +8,7 @@
 
 import Foundation
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
     import UIKit
     public typealias OAuthStoryboard = UIStoryboard
     public typealias OAuthStoryboardSegue = UIStoryboardSegue

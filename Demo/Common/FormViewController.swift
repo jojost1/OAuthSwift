@@ -6,7 +6,7 @@
 //  Copyright © 2016 Dongri Jin. All rights reserved.
 //
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
     import UIKit
     typealias FormViewControllerType = UITableViewController
     typealias Button = UISwitch
@@ -68,7 +68,7 @@ class FormViewController: FormViewControllerType {
         self.keyTextField.text = self.delegate?.key
         self.secretTextField.text = self.delegate?.secret
         
-        #if os(iOS)
+        #if os(iOS) || os(visionOS)
             safariURLHandlerView.isHidden = !self.safariURLHandlerAvailable
         #endif
         self.urlHandlerType = .`internal`
@@ -80,7 +80,7 @@ class FormViewController: FormViewControllerType {
     @IBOutlet weak var internalURLHandler: Button!
     @IBOutlet var keyTextField: TextField!
     @IBOutlet var secretTextField: TextField!
-    #if os(iOS)
+    #if os(iOS) || os(visionOS)
     @IBOutlet weak var safariURLHandler: UISwitch!
     @IBOutlet weak var safariURLHandlerView: UITableViewCell!
     @IBOutlet weak var asWebURLHandler: UISwitch!
@@ -101,7 +101,7 @@ class FormViewController: FormViewControllerType {
     }
     
     func dismiss(sender: AnyObject?) {
-        #if os(iOS)
+        #if os(iOS) || os(visionOS)
             // let parent
         #else
             self.dismiss(sender)
@@ -116,7 +116,7 @@ class FormViewController: FormViewControllerType {
             else if internalURLHandler == sender {
                 urlHandlerType = .`internal`
             }
-            #if os(iOS)
+            #if os(iOS) || os(visionOS)
             if safariURLHandler == sender  {
                 urlHandlerType = .safari
             }
@@ -132,7 +132,7 @@ class FormViewController: FormViewControllerType {
             else if internalURLHandler == sender {
                 urlHandlerType = .external
             }
-            #if os(iOS)
+            #if os(iOS) || os(visionOS)
             if safariURLHandler == sender  {
                 urlHandlerType = .`internal`
             }
@@ -151,7 +151,7 @@ class FormViewController: FormViewControllerType {
             if internalURLHandler.isOn {
                 return .`internal`
             }
-            #if os(iOS)
+            #if os(iOS) || os(visionOS)
             if safariURLHandler.isOn {
                 return .safari
             }
@@ -166,7 +166,7 @@ class FormViewController: FormViewControllerType {
             case .external:
                 externalURLHandler.setOn(true, animated: true)
                 internalURLHandler.setOn(false, animated: true)
-                #if os(iOS)
+                #if os(iOS) || os(visionOS)
                 safariURLHandler.setOn(false, animated: true)
                 asWebURLHandler.setOn(false, animated: true)
                 #endif
@@ -174,13 +174,13 @@ class FormViewController: FormViewControllerType {
             case .`internal`:
                 internalURLHandler.setOn(true, animated: true)
                 externalURLHandler.setOn(false, animated: true)
-                #if os(iOS)
+                #if os(iOS) || os(visionOS)
                 safariURLHandler.setOn(false, animated: true)
                 asWebURLHandler.setOn(false, animated: true)
                 #endif
                 break
             case .safari:
-                #if os(iOS)
+                #if os(iOS) || os(visionOS)
                 safariURLHandler.setOn(true, animated: true)
                 asWebURLHandler.setOn(false, animated: true)
                 #endif
@@ -188,7 +188,7 @@ class FormViewController: FormViewControllerType {
                 internalURLHandler.setOn(false, animated: true)
                 break
             case .asWeb:
-                #if os(iOS)
+                #if os(iOS) || os(visionOS)
                 safariURLHandler.setOn(false, animated: true)
                 asWebURLHandler.setOn(true, animated: true)
                 #endif

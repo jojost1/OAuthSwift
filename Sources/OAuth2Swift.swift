@@ -89,7 +89,7 @@ open class OAuth2Swift: OAuthSwift {
             return false
         }
 
-        #if targetEnvironment(macCatalyst) || os(iOS)
+        #if targetEnvironment(macCatalyst) || os(iOS) || os(visionOS)
         if #available(iOS 13.0, macCatalyst 13.0, *),
            ASWebAuthenticationURLHandler.isCancelledError(domain: domain, code: code) {
             return true

@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: Open SFSafariViewController
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 import SafariServices
 #if canImport(AuthenticationServices)
 import AuthenticationServices

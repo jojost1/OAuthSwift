@@ -8,7 +8,7 @@
 
 import OAuthSwift
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 import UIKit
 import SafariServices
 #elseif os(OSX)
@@ -26,7 +26,7 @@ class ViewController: OAuthViewController {
         let controller = WebViewController()
         #if os(OSX)
         controller.view = NSView(frame: NSRect(x:0, y:0, width: 450, height: 500)) // needed if no nib or not loaded from storyboard
-        #elseif os(iOS)
+        #elseif os(iOS) || os(visionOS)
         controller.view = UIView(frame: UIScreen.main.bounds) // needed if no nib or not loaded from storyboard
         #endif
         controller.delegate = self
@@ -37,7 +37,7 @@ class ViewController: OAuthViewController {
 }
 
 extension ViewController: OAuthWebViewControllerDelegate {
-    #if os(iOS) || os(tvOS)
+    #if os(iOS) || os(visionOS) || os(tvOS)
     
     func oauthWebViewControllerDidPresent() {
         
@@ -1494,7 +1494,7 @@ extension ViewController {
         // init now web view handler
         let _ = internalWebViewController.webView
         
-        #if os(iOS)
+        #if os(iOS) || os(visionOS)
         self.navigationItem.title = "OAuth"
         let tableView: UITableView = UITableView(frame: self.view.bounds, style: .plain)
         tableView.delegate = self
@@ -1564,7 +1564,7 @@ extension ViewController {
     }
     
     func snapshot() -> Data {
-        #if os(iOS)
+        #if os(iOS) || os(visionOS)
         UIGraphicsBeginImageContext(self.view.frame.size)
         self.view.layer.render(in: UIGraphicsGetCurrentContext()!)
         let fullScreenshot = UIGraphicsGetImageFromCurrentImageContext()
@@ -1579,7 +1579,7 @@ extension ViewController {
     }
     
     func showAlertView(title: String, message: String) {
-        #if os(iOS)
+        #if os(iOS) || os(visionOS)
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
@@ -1620,7 +1620,7 @@ extension ViewController {
             }
             return internalWebViewController
         case .safari:
-            #if os(iOS)
+            #if os(iOS) || os(visionOS)
             if #available(iOS 9.0, *) {
                 let handler = SafariURLHandler(viewController: self, oauthSwift: self.oauthswift!)
                 handler.presentCompletion = {
@@ -1643,7 +1643,7 @@ extension ViewController {
             #endif
             return OAuthSwiftOpenURLExternally.sharedInstance
         case .asWeb:
-            #if os(iOS)
+            #if os(iOS) || os(visionOS)
             if #available(iOS 13.0, tvOS 13.0, *) {
                 return ASWebAuthenticationURLHandler(callbackUrlScheme: "oauth-swift://oauth-callback/", presentationContextProvider: self)
             }
@@ -1691,7 +1691,7 @@ extension ViewController {
 public typealias Queue = DispatchQueue
 // MARK: - Table
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     // MARK: UITableViewDataSource
     
@@ -1763,7 +1763,7 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
 }
 #endif
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 import SafariServices
 #if canImport(AuthenticationServices)
 import AuthenticationServices
@@ -1800,7 +1800,7 @@ extension ViewController: FormViewControllerDelegate {
     }
     
     func dismissForm() {
-        #if os(iOS)
+        #if os(iOS) || os(visionOS)
         /*self.dismissViewControllerAnimated(true) { // without animation controller
          print("form dismissed")
          }*/

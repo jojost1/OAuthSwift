@@ -8,7 +8,7 @@
 
 import OAuthSwift
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
     import UIKit
     import WebKit
     typealias WebView = WKWebView
@@ -32,7 +32,7 @@ class WebViewController: OAuthWebViewController {
         self.view.addSubview(self.webView)
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-0-[view]-0-|", options: [], metrics: nil, views: ["view":self.webView]))
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[view]-0-|", options: [], metrics: nil, views: ["view":self.webView]))
-        #if os(iOS)
+        #if os(iOS) || os(visionOS)
         loadAddressURL()
         #endif
     }
